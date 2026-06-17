@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CONFIDENTIAL — remitgroup.com strategic acquisition memorandum." />
+  <title>CONFIDENTIAL — Remit Group Acquisition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Source Sans 3",sans-serif;background:#f0eeeb;color:#1a1a1a;min-height:100vh;line-height:1.6;font-size:10.5pt}
+    .confidential{background:#8b1a1a;color:#fff;text-align:center;padding:.5rem;font-size:.625rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase}
+    .page{max-width:8.5in;margin:0 auto;padding:2.5rem 2rem 3rem;background:#fff;min-height:calc(100vh - 1.75rem);box-shadow:0 0 60px rgba(0,0,0,.06)}
+    .memo-header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:1.5rem;border-bottom:2px solid #1a1a1a;margin-bottom:2rem}
+    .memo-header h1{font-family:"Source Serif 4",serif;font-size:14pt;font-weight:600}
+    .memo-header .ref{font-size:8pt;color:#666;text-align:right;line-height:1.6}
+    .memo-title{font-family:"Source Serif 4",serif;font-size:16pt;font-weight:600;margin-bottom:.25rem}
+    .memo-subtitle{font-size:9pt;color:#666;margin-bottom:2rem}
+    .section{margin-bottom:1.75rem}
+    .section h2{font-size:8pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8b1a1a;margin-bottom:.75rem}
+    .section p{font-size:10pt;margin-bottom:.75rem;text-align:justify}
+    .section ul{margin:.5rem 0 .75rem 1.25rem;font-size:10pt}
+    .section li{margin-bottom:.375rem}
+    .highlight-box{background:#f7f5f2;border-left:3px solid #8b1a1a;padding:1rem 1.25rem;margin:1.5rem 0;font-size:10pt}
+    .terms{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;font-size:9pt}
+    .term{border:1px solid #ddd;padding:.75rem}
+    .term strong{display:block;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:#666;margin-bottom:.25rem}
+    .cta{display:block;text-align:center;padding:.875rem;margin:2rem 0;border:2px solid #1a1a1a;font-size:8pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:#1a1a1a;transition:background .15s,color .15s}
+    .cta:hover{background:#1a1a1a;color:#fff}
+    .cta-note{text-align:center;font-size:8pt;color:#666;font-style:italic}
+    .memo-footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid #ddd;font-size:7.5pt;color:#999;text-align:center}
+    .back{position:fixed;top:2.5rem;right:1.5rem;font-size:8pt;color:#666;text-decoration:underline;z-index:10;background:#fff;padding:.25rem .5rem}
+    @media(max-width:640px){.terms{grid-template-columns:1fr}.page{padding:2rem 1.25rem}}
+  </style>
+</head>
+<body>
+  <div class="confidential">Confidential — Qualified Recipients Only</div>
+  <a class="back" href="/designs/">← Designs</a>
+  <div class="page">
+    <header class="memo-header">
+      <h1>Remit Group</h1>
+      <div class="ref">Ref: RG-2026-ACQ-001<br>Date: <span id="d"></span><br>Classification: Confidential</div>
+    </header>
+    <h2 class="memo-title">Strategic Acquisition Memorandum</h2>
+    <p class="memo-subtitle">Premium Global Domain Asset — remitgroup.com</p>
+    <section class="section">
+      <h2>Executive Summary</h2>
+      <p>The domain <strong>remitgroup.com</strong> represents a rare, non-replicable digital asset within the premium .com namespace. Assets of this classification — short, authoritative, globally pronounceable — transact at the upper decile of the domain market, typically to strategic corporate buyers, private equity portfolio companies, and institutional brand holders.</p>
+      <div class="highlight-box">This memorandum is circulated exclusively to pre-qualified acquirers. General marketplace listings are intentionally withheld to preserve negotiating position and transaction integrity.</div>
+    </section>
+    <section class="section">
+      <h2>Investment Rationale</h2>
+      <ul>
+        <li><strong>Scarcity:</strong> Finite supply of premium .com identities; no substitutes exist</li>
+        <li><strong>Brand equity:</strong> Immediate authority with customers, investors, and regulators</li>
+        <li><strong>Defensive value:</strong> Prevents competitor acquisition of a critical brand address</li>
+        <li><strong>Permanent asset:</strong> Unlike marketing spend, domain ownership is enduring capital</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Transaction Parameters</h2>
+      <div class="terms">
+        <div class="term"><strong>Asset</strong>remitgroup.com</div>
+        <div class="term"><strong>Structure</strong>Private treaty sale</div>
+        <div class="term"><strong>Process</strong>Qualified inquiry → NDA → Terms</div>
+        <div class="term"><strong>Timeline</strong>Upon mutual agreement</div>
+      </div>
+    </section>
+    <a class="cta" href="mailto:acquire@remitgroup.com?subject=CONFIDENTIAL%20%E2%80%94%20Qualified%20Acquisition%20Inquiry%20remitgroup.com">Strategic Acquisition Inquiries — Contact Us</a>
+    <p class="cta-note">This communication is confidential and intended solely for qualified strategic acquirers.</p>
+    <footer class="memo-footer">&copy; <span id="y"></span> Remit Group · Privately held · Not for public distribution</footer>
+  </div>
+  <script>
+    document.getElementById("y").textContent=new Date().getFullYear();
+    document.getElementById("d").textContent=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+  </script>
+</body>
+</html>

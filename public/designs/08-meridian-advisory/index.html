@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Meridian Advisory — remitgroup.com strategic domain disposition." />
+  <title>Meridian Advisory — remitgroup.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Open Sans",sans-serif;background:#eceae6;color:#2a2a2a;min-height:100vh;line-height:1.7;font-weight:300}
+    .letterhead{max-width:44rem;margin:0 auto;padding:3rem 2rem;background:#fff;min-height:100vh;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+    .firm{border-bottom:3px double #2a2a2a;padding-bottom:1.25rem;margin-bottom:2.5rem}
+    .firm-name{font-family:"Libre Baskerville",serif;font-size:1.125rem;letter-spacing:.08em}
+    .firm-tag{font-size:.625rem;letter-spacing:.15em;text-transform:uppercase;color:#888;margin-top:.375rem}
+    .date-line{font-size:.8125rem;color:#888;margin-bottom:2rem}
+    .salutation{font-size:.9375rem;margin-bottom:1.5rem}
+    .body-text p{font-size:.9375rem;margin-bottom:1.25rem;text-align:justify}
+    .body-text strong{font-weight:600}
+    .body-text em{font-family:"Libre Baskerville",serif;font-style:italic}
+    .asset-callout{margin:2rem 0;padding:1.25rem 1.5rem;background:#f7f6f4;border:1px solid #ddd;font-family:"Libre Baskerville",serif;font-size:1.125rem;text-align:center}
+    .closing{margin-top:2.5rem;font-size:.9375rem}
+    .signature{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #ddd}
+    .signature .name{font-family:"Libre Baskerville",serif;font-size:1rem;margin-bottom:.25rem}
+    .signature .title{font-size:.75rem;color:#888}
+    .cta{display:inline-block;margin-top:2rem;padding:.875rem 2rem;background:#2a2a2a;color:#fff;font-size:.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+    .cta:hover{background:#444}
+    .cta-note{font-size:.75rem;color:#888;margin-top:1rem;font-style:italic}
+    .disclaimer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #ddd;font-size:.625rem;color:#aaa;line-height:1.7}
+    .back{position:fixed;top:1.5rem;right:1.5rem;font-size:.75rem;color:#888;text-decoration:none;z-index:10}
+    .back:hover{color:#2a2a2a}
+  </style>
+</head>
+<body>
+  <a class="back" href="/designs/">← Designs</a>
+  <div class="letterhead">
+    <header class="firm">
+      <div class="firm-name">Meridian Advisory</div>
+      <div class="firm-tag">Strategic Domain Dispositions</div>
+    </header>
+    <p class="date-line"><span id="d"></span></p>
+    <p class="salutation">Dear Prospective Acquirer,</p>
+    <div class="body-text">
+      <p>We write on behalf of the private holder of <strong>remitgroup.com</strong> to inform you of a rare disposition opportunity within the premium global domain market.</p>
+      <p>This asset belongs to an exclusive class of .com identities — authoritative, globally recognised, and permanently scarce. Such domains are acquired not as operational expenses, but as <em>strategic balance-sheet holdings</em> that appreciate in value as the digital economy matures and premium namespace inventory dwindles.</p>
+      <div class="asset-callout">remitgroup.com<br><span style="font-size:.75rem;font-family:'Open Sans',sans-serif;color:#888;font-style:normal">Premium Global .com · Private Treaty Sale</span></div>
+      <p>We are conducting a confidential outreach to a limited number of qualified strategic buyers — corporate development teams, institutional brand holders, and portfolio companies with the capacity to transact at institutional domain market levels.</p>
+      <p>Should this opportunity align with your organisation's strategic interests, we invite you to initiate contact through the channel below. All inquiries will be treated with the utmost discretion.</p>
+    </div>
+    <a class="cta" href="mailto:acquire@remitgroup.com?subject=Meridian%20Advisory%20%E2%80%94%20Qualified%20Inquiry%20remitgroup.com">Strategic Acquisition Inquiries — Contact Us</a>
+    <p class="cta-note">Confidential · Qualified buyers only · Response within 48 hours</p>
+    <div class="closing">
+      <p>Yours faithfully,</p>
+      <div class="signature">
+        <div class="name">Remit Group</div>
+        <div class="title">Private Asset Holder</div>
+      </div>
+    </div>
+    <p class="disclaimer">This communication is confidential and intended solely for the named recipient. It does not constitute a public offering. Domain disposition is subject to qualification, due diligence, and mutual agreement on terms. &copy; <span id="y"></span> Remit Group.</p>
+  </div>
+  <script>
+    document.getElementById("y").textContent=new Date().getFullYear();
+    document.getElementById("d").textContent=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+  </script>
+</body>
+</html>
