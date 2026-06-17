@@ -21,6 +21,7 @@
     .bottom{padding:2rem 2rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:28rem;margin:0 auto}
     .form-heading{font-size:.6875rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#737373;text-align:center;margin-bottom:.25rem}
     .form{width:100%;display:grid;gap:1rem}
+    .form.is-hidden{display:none}
     .field{display:flex;flex-direction:column;gap:.5rem;text-align:left}
     .field label{font-size:.75rem;font-weight:500;letter-spacing:.04em;color:#a3a3a3;line-height:1.4}
     .field label .hint{font-weight:400;color:#525252}
@@ -34,9 +35,19 @@
     .cta:focus-visible{outline:2px solid #fff;outline-offset:4px}
     .cta-note{font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:#525252;text-align:center}
     .form-status{font-size:.6875rem;letter-spacing:.04em;text-align:center;min-height:1rem}
-    .form-status.success{color:#a3a3a3}
     .form-status.error{color:#f87171}
     .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden}
+    .success-panel{display:none;width:100%;position:relative;padding:2rem 1.5rem;border:1px solid #222;background:#0a0a0a;text-align:center}
+    .success-panel.is-visible{display:block}
+    .success-dismiss{position:absolute;top:.75rem;right:.75rem;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid #333;border-radius:4px;color:#737373;font-size:1.125rem;line-height:1;cursor:pointer;transition:border-color .2s,color .2s}
+    .success-dismiss:hover{border-color:#525252;color:#fff}
+    .success-dismiss:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .success-message{font-size:1rem;font-weight:500;color:#fff;line-height:1.5;margin-bottom:.5rem}
+    .success-sub{font-size:.75rem;color:#737373;line-height:1.5;margin-bottom:1.5rem}
+    .progress-track{width:100%;height:2px;background:#222;overflow:hidden}
+    .progress-bar{height:100%;width:100%;background:#fff;transform-origin:left center;transform:scaleX(1)}
+    .progress-bar.is-animating{animation:progress-shrink var(--duration) linear forwards}
+    @keyframes progress-shrink{from{transform:scaleX(1)}to{transform:scaleX(0)}}
   </style>
 </head>
 <body>
@@ -72,11 +83,64 @@
       <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       <p class="cta-note">Confidential inquiries welcome</p>
     </form>
+
+    <div class="success-panel" id="success-panel" role="status" aria-live="polite" hidden>
+      <button type="button" class="success-dismiss" id="success-dismiss" aria-label="Dismiss and return to form">×</button>
+      <p class="success-message">Thank you. Your inquiry has been received.</p>
+      <p class="success-sub">We will respond within 48 hours. This message will close shortly.</p>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
   </div>
   <script>
+    const FEEDBACK_DURATION_MS = 8000;
+
     const form = document.getElementById("inquiry-form");
     const statusEl = document.getElementById("form-status");
     const submitBtn = document.getElementById("submit-btn");
+    const successPanel = document.getElementById("success-panel");
+    const successDismiss = document.getElementById("success-dismiss");
+    const progressBar = document.getElementById("progress-bar");
+
+    let feedbackTimeoutId = null;
+
+    function clearFeedbackTimer() {
+      if (feedbackTimeoutId !== null) {
+        clearTimeout(feedbackTimeoutId);
+        feedbackTimeoutId = null;
+      }
+    }
+
+    function showForm() {
+      clearFeedbackTimer();
+      successPanel.classList.remove("is-visible");
+      successPanel.hidden = true;
+      progressBar.classList.remove("is-animating");
+      progressBar.style.removeProperty("--duration");
+      form.classList.remove("is-hidden");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Acquisition Inquiry";
+    }
+
+    function showSuccess() {
+      form.classList.add("is-hidden");
+      statusEl.textContent = "";
+      statusEl.className = "form-status";
+
+      successPanel.hidden = false;
+      successPanel.classList.add("is-visible");
+
+      progressBar.classList.remove("is-animating");
+      void progressBar.offsetWidth;
+      progressBar.style.setProperty("--duration", `${FEEDBACK_DURATION_MS}ms`);
+      progressBar.classList.add("is-animating");
+
+      clearFeedbackTimer();
+      feedbackTimeoutId = setTimeout(showForm, FEEDBACK_DURATION_MS);
+    }
+
+    successDismiss.addEventListener("click", showForm);
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -115,12 +179,10 @@
         }
 
         form.reset();
-        statusEl.textContent = "Thank you. Your inquiry has been received.";
-        statusEl.classList.add("success");
+        showSuccess();
       } catch (error) {
         statusEl.textContent = error.message || "Unable to submit. Please try again.";
         statusEl.classList.add("error");
-      } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = "Submit Acquisition Inquiry";
       }
