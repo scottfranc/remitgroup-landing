@@ -1,4 +1,5 @@
-interface Env {
+export interface Env {
+  ASSETS: Fetcher;
   DB: D1Database;
   BREVO_API_KEY: string;
   SENDER_NAME: string;
@@ -7,7 +8,7 @@ interface Env {
   NOTIFY_EMAIL: string;
 }
 
-interface InquiryPayload {
+export interface InquiryPayload {
   name?: string;
   company?: string;
   email?: string;
@@ -37,7 +38,10 @@ function jsonResponse(body: Record<string, unknown>, status = 200): Response {
   });
 }
 
-async function sendBrevoEmail(env: Env, inquiry: Required<Pick<InquiryPayload, "name" | "email">> & InquiryPayload): Promise<void> {
+async function sendBrevoEmail(
+  env: Env,
+  inquiry: Required<Pick<InquiryPayload, "name" | "email">> & InquiryPayload
+): Promise<void> {
   const company = inquiry.company?.trim() || "Not provided";
   const message = inquiry.message?.trim() || "Not provided";
 
@@ -89,9 +93,19 @@ async function sendBrevoEmail(env: Env, inquiry: Required<Pick<InquiryPayload, "
   }
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export function handleInquiryOptions(): Response {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
+}
+
+export async function handleInquiry(request: Request, env: Env): Promise<Response> {
   try {
-    const { BREVO_API_KEY, NOTIFY_EMAIL, SENDER_EMAIL } = context.env;
+    const { BREVO_API_KEY, NOTIFY_EMAIL, SENDER_EMAIL } = env;
 
     if (!BREVO_API_KEY || BREVO_API_KEY === "YOUR_BREVO_API_KEY") {
       return jsonResponse({ ok: false, error: "Email service is not configured." }, 503);
@@ -105,7 +119,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       return jsonResponse({ ok: false, error: "Sender email is not configured." }, 503);
     }
 
-    const body = await context.request.json<InquiryPayload>();
+    const body = await request.json<InquiryPayload>();
     const name = body.name?.trim() ?? "";
     const email = body.email?.trim() ?? "";
     const company = body.company?.trim() ?? "";
@@ -127,27 +141,17 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       return jsonResponse({ ok: false, error: "Message is too long." }, 400);
     }
 
-    await context.env.DB.prepare(
+    await env.DB.prepare(
       `INSERT INTO inquiries (name, company, email, message) VALUES (?, ?, ?, ?)`
     )
       .bind(name, company || null, email, message || null)
       .run();
 
-    await sendBrevoEmail(context.env, { name, email, company, message });
+    await sendBrevoEmail(env, { name, email, company, message });
 
     return jsonResponse({ ok: true });
   } catch (error) {
     console.error("Inquiry submission failed:", error);
     return jsonResponse({ ok: false, error: "Unable to submit inquiry. Please try again later." }, 500);
   }
-};
-
-export const onRequestOptions: PagesFunction = async () => {
-  return new Response(null, {
-    status: 204,
-    headers: {
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    },
-  });
-};
+}
