@@ -1,0 +1,7 @@
+{
+  "brevoApiKey": "YOUR_BREVO_API_KEY",
+  "senderName": "Remit Group",
+  "senderEmail": "acquire@remitgroup.com",
+  "notifyName": "YOUR_NAME",
+  "notifyEmail": "YOUR_EMAIL@example.com"
+}

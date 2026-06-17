@@ -18,12 +18,23 @@
     .domain .dot{color:#333}
     .status{font-size:clamp(.75rem,2vw,.9375rem);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#a3a3a3;margin-top:2.5rem}
     .tier{font-size:clamp(.5rem,1.2vw,.6875rem);font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:#444;margin-top:.875rem}
-    .bottom{padding:2rem 2rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1rem}
-    .cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-size:clamp(.6875rem,1.8vw,.8125rem);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#000;text-decoration:none;background:#fff;border:2px solid #fff;padding:1.125rem 2.75rem;transition:background .2s,color .2s,box-shadow .2s,transform .15s;box-shadow:0 0 0 0 rgba(255,255,255,.0)}
-    .cta:hover{background:transparent;color:#fff;box-shadow:0 0 40px rgba(255,255,255,.08);transform:translateY(-1px)}
+    .bottom{padding:2rem 2rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:28rem;margin:0 auto}
+    .form{width:100%;display:grid;gap:.875rem}
+    .field{display:flex;flex-direction:column;gap:.375rem;text-align:left}
+    .field label{font-size:.5rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#525252}
+    .field input,.field textarea{width:100%;background:#0a0a0a;border:1px solid #222;color:#fff;padding:.875rem 1rem;font-family:inherit;font-size:.875rem;font-weight:400;transition:border-color .2s}
+    .field input::placeholder,.field textarea::placeholder{color:#333}
+    .field input:focus,.field textarea:focus{outline:none;border-color:#444}
+    .field textarea{min-height:5.5rem;resize:vertical}
+    .cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:100%;font-size:clamp(.6875rem,1.8vw,.8125rem);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#000;background:#fff;border:2px solid #fff;padding:1.125rem 2.75rem;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s,transform .15s}
+    .cta:hover:not(:disabled){background:transparent;color:#fff;box-shadow:0 0 40px rgba(255,255,255,.08);transform:translateY(-1px)}
+    .cta:disabled{opacity:.5;cursor:not-allowed}
     .cta:focus-visible{outline:2px solid #fff;outline-offset:4px}
-    .cta svg{flex-shrink:0}
-    .cta-note{font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:#525252}
+    .cta-note{font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:#525252;text-align:center}
+    .form-status{font-size:.6875rem;letter-spacing:.04em;text-align:center;min-height:1rem}
+    .form-status.success{color:#a3a3a3}
+    .form-status.error{color:#f87171}
+    .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden}
   </style>
 </head>
 <body>
@@ -33,13 +44,84 @@
     <p class="tier">Private Treaty · Qualified Buyers Only</p>
   </div>
   <div class="bottom">
-    <a class="cta" href="mailto:acquire@remitgroup.com?subject=Acquisition%20Inquiry%20%E2%80%94%20remitgroup.com">
-      Strategic Acquisition Inquiries — Contact Us
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <p class="cta-note">Confidential inquiries welcome</p>
+    <form class="form" id="inquiry-form" novalidate>
+      <div class="hp" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required maxlength="120" autocomplete="name" placeholder="Your name" />
+      </div>
+      <div class="field">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" maxlength="200" autocomplete="organization" placeholder="Organisation (optional)" />
+      </div>
+      <div class="field">
+        <label for="email">Work email</label>
+        <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" placeholder="you@company.com" />
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" maxlength="5000" placeholder="Brief details about your acquisition interest (optional)"></textarea>
+      </div>
+      <button class="cta" type="submit" id="submit-btn">Strategic Acquisition Inquiries — Contact Us</button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      <p class="cta-note">Confidential inquiries welcome</p>
+    </form>
   </div>
+  <script>
+    const form = document.getElementById("inquiry-form");
+    const statusEl = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      statusEl.textContent = "";
+      statusEl.className = "form-status";
+
+      if (form.website.value) return;
+
+      const payload = {
+        name: form.name.value.trim(),
+        company: form.company.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
+      };
+
+      if (!payload.name || !payload.email) {
+        statusEl.textContent = "Please complete the required fields.";
+        statusEl.classList.add("error");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting…";
+
+      try {
+        const response = await fetch("/api/inquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || "Submission failed.");
+        }
+
+        form.reset();
+        statusEl.textContent = "Thank you. Your inquiry has been received.";
+        statusEl.classList.add("success");
+      } catch (error) {
+        statusEl.textContent = error.message || "Unable to submit. Please try again.";
+        statusEl.classList.add("error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Strategic Acquisition Inquiries — Contact Us";
+      }
+    });
+  </script>
 </body>
 </html>

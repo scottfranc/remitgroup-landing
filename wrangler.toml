@@ -1,0 +1,15 @@
+name = "remitgroup"
+compatibility_date = "2026-06-17"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "remitgroup-inquiries"
+database_id = "f24ff677-0f2a-4fb0-8d9b-b1eea9ebb62b"
+migrations_dir = "migrations"
+
+[vars]
+SENDER_NAME = "Remit Group"
+SENDER_EMAIL = "no-reply@dottab.com"
+NOTIFY_NAME = "Francis"
+NOTIFY_EMAIL = "franciis.scott@gmail.com"

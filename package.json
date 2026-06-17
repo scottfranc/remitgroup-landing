@@ -4,9 +4,12 @@
   "version": "1.0.0",
   "description": "Premium domain acquisition landing page for remitgroup.com",
   "scripts": {
+    "dev": "wrangler pages dev public",
     "deploy": "wrangler pages deploy public --project-name=remitgroup"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250617.0",
+    "typescript": "^5.8.3",
     "wrangler": "^4.0.0"
   }
 }
