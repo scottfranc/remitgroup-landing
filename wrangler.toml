@@ -1,4 +1,4 @@
-name = "remitgroup"
+name = "remitgroup-landing"
 compatibility_date = "2026-06-17"
 main = "src/index.ts"
 
@@ -18,3 +18,6 @@ SENDER_NAME = "Remit Group"
 SENDER_EMAIL = "no-reply@dottab.com"
 NOTIFY_NAME = "Francis"
 NOTIFY_EMAIL = "franciis.scott@gmail.com"
+
+[secrets]
+required = ["BREVO_API_KEY"]
