@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remit Group — Design Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: #0c0c0e; color: #e4e4e7; min-height: 100vh; }
+    .wrap { max-width: 72rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .intro { color: #a1a1aa; max-width: 50ch; margin-bottom: 2.5rem; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1.25rem; }
+    .card { background: #18181b; border: 1px solid #27272a; border-radius: 12px; overflow: hidden; transition: border-color 0.2s, transform 0.15s; text-decoration: none; color: inherit; display: block; }
+    .card:hover { border-color: #52525b; transform: translateY(-2px); }
+    .preview { height: 9rem; position: relative; overflow: hidden; }
+    .preview iframe { width: 200%; height: 200%; border: 0; transform: scale(0.5); transform-origin: top left; pointer-events: none; }
+    .meta { padding: 1rem 1.25rem 1.25rem; }
+    .num { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; color: #71717a; text-transform: uppercase; }
+    .name { font-size: 1rem; font-weight: 600; margin: 0.25rem 0 0.375rem; }
+    .desc { font-size: 0.8125rem; color: #a1a1aa; line-height: 1.5; }
+    .swatches { display: flex; gap: 0.375rem; margin-top: 0.75rem; }
+    .swatch { width: 1.25rem; height: 1.25rem; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Choose a design</h1>
+    <p class="intro">Ten distinct landing page concepts for remitgroup.com. Click any card to preview full-screen, then tell me which number you'd like as the live site.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+  <script>
+    const designs = [
+      { id: "01", slug: "midnight-executive", name: "Midnight Executive", desc: "Dark navy, gold accents, serif elegance. Private equity boardroom.", colors: ["#0a0f1a", "#c9a962", "#111827"] },
+      { id: "02", slug: "swiss-minimal", name: "Swiss Minimal", desc: "Pure white, black type, radical whitespace. Dieter Rams restraint.", colors: ["#ffffff", "#000000", "#f5f5f5"] },
+      { id: "03", slug: "brutalist", name: "Brutalist", desc: "Raw borders, monospace, unapologetic contrast. Anti-corporate edge.", colors: ["#f0f0f0", "#000000", "#ff3300"] },
+      { id: "04", slug: "glass-aurora", name: "Glass Aurora", desc: "Violet-blue gradients, frosted glass panels. Modern tech premium.", colors: ["#1a1033", "#6366f1", "#a78bfa"] },
+      { id: "05", slug: "editorial-heritage", name: "Editorial Heritage", desc: "Warm cream paper, classic serif, burgundy. Old-money publishing.", colors: ["#f7f3ed", "#2c1810", "#7c2d3e"] },
+      { id: "06", slug: "fintech-trust", name: "Fintech Trust", desc: "Clean white, trust-blue, structured grid. Banking-grade credibility.", colors: ["#ffffff", "#0f4c81", "#e8f1f8"] },
+      { id: "07", slug: "art-deco", name: "Art Deco", desc: "Deep teal, geometric gold lines, 1920s corporate grandeur.", colors: ["#0d3b3b", "#d4af37", "#1a5c5c"] },
+      { id: "08", slug: "neo-corporate", name: "Neo Corporate", desc: "Cool gray grid, consulting-firm precision. McKinsey-adjacent.", colors: ["#f4f4f5", "#18181b", "#3b82f6"] },
+      { id: "09", slug: "obsidian-luxe", name: "Obsidian Luxe", desc: "Pure black, hairline white rules, whisper-thin luxury.", colors: ["#000000", "#ffffff", "#1a1a1a"] },
+      { id: "10", slug: "legal-monochrome", name: "Legal Monochrome", desc: "Formal black & white, legal-document gravitas. Serious acquirers.", colors: ["#ffffff", "#000000", "#e5e5e5"] },
+    ];
+    document.getElementById("grid").innerHTML = designs.map(d => `
+      <a class="card" href="/designs/${d.id}-${d.slug}/">
+        <div class="preview" style="background:${d.colors[0]}">
+          <iframe src="/designs/${d.id}-${d.slug}/" loading="lazy" title="${d.name} preview"></iframe>
+        </div>
+        <div class="meta">
+          <div class="num">Design ${d.id}</div>
+          <div class="name">${d.name}</div>
+          <div class="desc">${d.desc}</div>
+          <div class="swatches">${d.colors.map(c => `<span class="swatch" style="background:${c}"></span>`).join("")}</div>
+        </div>
+      </a>
+    `).join("");
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Remit Group — Premium digital asset available for strategic acquisition." />
+  <title>Remit Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"IBM Plex Sans",system-ui,sans-serif;background:#fff;color:#1a2b3c;min-height:100vh;line-height:1.6}
+    .topbar{background:#0f4c81;color:#fff;padding:.75rem 2rem;font-size:.75rem;display:flex;justify-content:space-between;align-items:center}
+    .topbar span{opacity:.8}
+    .page{max-width:64rem;margin:0 auto;padding:0 2rem}
+    .hero{display:grid;grid-template-columns:1fr 1fr;gap:4rem;padding:5rem 0;align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:#e8f1f8;border-radius:6px;font-size:.75rem;font-weight:500;color:#0f4c81;margin-bottom:1.5rem}
+    .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#22c55e}
+    .headline{font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:600;line-height:1.2;color:#0f4c81;margin-bottom:1.25rem}
+    .subhead{font-size:1rem;color:#5a6b7d;font-weight:300;margin-bottom:2rem;max-width:38ch}
+    .subhead strong{color:#1a2b3c;font-weight:500}
+    .cta{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.75rem;background:#0f4c81;color:#fff;font-size:.875rem;font-weight:500;text-decoration:none;border-radius:6px;transition:background .2s}
+    .cta:hover{background:#0a3a63}
+    .cta-note{font-size:.8125rem;color:#8b9cb0;margin-top:1rem}
+    .panel{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:2rem}
+    .panel-title{font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8b9cb0;margin-bottom:1.5rem}
+    .panel-row{display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid #e2e8f0;font-size:.9375rem}
+    .panel-row:last-child{border-bottom:none}
+    .panel-row span:first-child{color:#5a6b7d}
+    .panel-row span:last-child{font-weight:500;color:#0f4c81}
+    .trust{display:flex;gap:2rem;padding:3rem 0;border-top:1px solid #e2e8f0;margin-top:2rem}
+    .trust-item{text-align:center;flex:1}
+    .trust-num{font-size:1.5rem;font-weight:600;color:#0f4c81}
+    .trust-label{font-size:.6875rem;color:#8b9cb0;text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem}
+    .footer{padding:2rem 0;font-size:.75rem;color:#8b9cb0;border-top:1px solid #e2e8f0}
+    .back{position:fixed;top:3.5rem;right:1.5rem;font-size:.75rem;color:#8b9cb0;text-decoration:none;z-index:10}
+    .back:hover{color:#0f4c81}
+    @media(max-width:768px){.hero{grid-template-columns:1fr;gap:2rem;padding:3rem 0}.trust{flex-direction:column;gap:1.5rem}}
+  </style>
+</head>
+<body>
+  <a class="back" href="/designs/">← Designs</a>
+  <div class="topbar"><strong>Remit Group</strong><span>remitgroup.com</span></div>
+  <div class="page">
+    <main class="hero">
+      <div>
+        <div class="badge">Available for Strategic Acquisition</div>
+        <h1 class="headline">A trusted .com identity for global enterprises</h1>
+        <p class="subhead"><strong>remitgroup.com</strong> represents a credible, globally accessible brand asset — ideal for fintech, payments, and corporate development teams.</p>
+        <a class="cta" href="mailto:acquire@remitgroup.com?subject=Strategic%20Acquisition%20Inquiry%20%E2%80%94%20remitgroup.com">Strategic Acquisition Inquiries — Contact Us →</a>
+        <p class="cta-note">Confidential inquiries welcome. Response within 48 hours.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Asset Overview</div>
+        <div class="panel-row"><span>Domain</span><span>remitgroup.com</span></div>
+        <div class="panel-row"><span>Extension</span><span>.com — Global Standard</span></div>
+        <div class="panel-row"><span>Status</span><span>Available</span></div>
+        <div class="panel-row"><span>Type</span><span>Premium Brand Asset</span></div>
+      </div>
+    </main>
+    <div class="trust">
+      <div class="trust-item"><div class="trust-num">.com</div><div class="trust-label">Global TLD</div></div>
+      <div class="trust-item"><div class="trust-num">1</div><div class="trust-label">Owner</div></div>
+      <div class="trust-item"><div class="trust-num">48h</div><div class="trust-label">Response Time</div></div>
+    </div>
+    <footer class="footer">&copy; <span id="y"></span> Remit Group. All rights reserved. Privately held domain.</footer>
+  </div>
+  <script>document.getElementById("y").textContent=new Date().getFullYear()</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Remit Group — Premium digital asset available for strategic acquisition." />
+  <title>Remit Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Space Mono",monospace;background:#f0f0f0;color:#000;min-height:100vh;line-height:1.5}
+    .page{min-height:100vh;display:grid;grid-template-columns:1fr;border:4px solid #000;margin:1rem}
+    .sidebar{background:#000;color:#f0f0f0;padding:2rem;display:flex;flex-direction:column;justify-content:space-between}
+    .logo{font-size:1.25rem;font-weight:700;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.1em}
+    .main{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
+    .tag{display:inline-block;background:#ff3300;color:#fff;font-size:.6875rem;font-weight:700;padding:.375rem .75rem;text-transform:uppercase;margin-bottom:2rem;width:fit-content}
+    .headline{font-size:clamp(1.75rem,4vw,3rem);font-weight:700;text-transform:uppercase;line-height:1.1;margin-bottom:2rem;max-width:20ch}
+    .subhead{font-size:.875rem;max-width:40ch;margin-bottom:3rem;border-left:4px solid #ff3300;padding-left:1rem}
+    .cta{display:inline-block;background:#000;color:#f0f0f0;padding:1rem 1.5rem;font-family:inherit;font-size:.75rem;font-weight:700;text-decoration:none;text-transform:uppercase;border:3px solid #000;transition:background .15s,color .15s}
+    .cta:hover{background:#f0f0f0;color:#000}
+    .cta-note{font-size:.6875rem;margin-top:1rem;opacity:.7}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:4px solid #000;margin-top:3rem}
+    .cell{padding:1rem;border-right:4px solid #000;font-size:.6875rem}
+    .cell:last-child{border-right:none}
+    .cell strong{display:block;font-size:.5625rem;text-transform:uppercase;opacity:.5;margin-bottom:.25rem}
+    .back{position:fixed;top:1.5rem;right:1.5rem;font-size:.625rem;font-weight:700;text-transform:uppercase;color:#000;text-decoration:none;background:#f0f0f0;padding:.5rem;border:2px solid #000;z-index:10}
+    @media(max-width:768px){.page{grid-template-columns:1fr;margin:.5rem}.sidebar{padding:1.5rem;flex-direction:row;align-items:center}.logo{writing-mode:horizontal-tb;transform:none}.grid{grid-template-columns:1fr}.cell{border-right:none;border-bottom:4px solid #000}.cell:last-child{border-bottom:none}}
+  </style>
+</head>
+<body>
+  <a class="back" href="/designs/">← Designs</a>
+  <div class="page">
+    <aside class="sidebar"><div class="logo">Remit Group</div><span style="font-size:.625rem;opacity:.5">© <span id="y"></span></span></aside>
+    <div class="main">
+      <span class="tag">Available for acquisition</span>
+      <h1 class="headline">Premium .com brand asset</h1>
+      <p class="subhead"><strong>remitgroup.com</strong> — A globally accessible identity for enterprises, fintech leaders, and strategic acquirers.</p>
+      <a class="cta" href="mailto:acquire@remitgroup.com?subject=Strategic%20Acquisition%20Inquiry%20%E2%80%94%20remitgroup.com">Strategic Acquisition Inquiries — Contact Us</a>
+      <p class="cta-note">Confidential inquiries welcome.</p>
+      <div class="grid">
+        <div class="cell"><strong>Domain</strong>remitgroup.com</div>
+        <div class="cell"><strong>Extension</strong>.com</div>
+        <div class="cell"><strong>Status</strong>Available</div>
+      </div>
+    </div>
+  </div>
+  <script>document.getElementById("y").textContent=new Date().getFullYear()</script>
+</body>
+</html>
