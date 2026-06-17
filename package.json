@@ -1,0 +1,12 @@
+{
+  "name": "remitgroup-landing",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Premium domain acquisition landing page for remitgroup.com",
+  "scripts": {
+    "deploy": "wrangler pages deploy public --project-name=remitgroup"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
