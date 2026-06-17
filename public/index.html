@@ -19,9 +19,11 @@
     .status{font-size:clamp(.75rem,2vw,.9375rem);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#a3a3a3;margin-top:2.5rem}
     .tier{font-size:clamp(.5rem,1.2vw,.6875rem);font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:#444;margin-top:.875rem}
     .bottom{padding:2rem 2rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:28rem;margin:0 auto}
-    .form{width:100%;display:grid;gap:.875rem}
-    .field{display:flex;flex-direction:column;gap:.375rem;text-align:left}
-    .field label{font-size:.5rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#525252}
+    .form-heading{font-size:.6875rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#737373;text-align:center;margin-bottom:.25rem}
+    .form{width:100%;display:grid;gap:1rem}
+    .field{display:flex;flex-direction:column;gap:.5rem;text-align:left}
+    .field label{font-size:.75rem;font-weight:500;letter-spacing:.04em;color:#a3a3a3;line-height:1.4}
+    .field label .hint{font-weight:400;color:#525252}
     .field input,.field textarea{width:100%;background:#0a0a0a;border:1px solid #222;color:#fff;padding:.875rem 1rem;font-family:inherit;font-size:.875rem;font-weight:400;transition:border-color .2s}
     .field input::placeholder,.field textarea::placeholder{color:#333}
     .field input:focus,.field textarea:focus{outline:none;border-color:#444}
@@ -45,27 +47,28 @@
   </div>
   <div class="bottom">
     <form class="form" id="inquiry-form" novalidate>
+      <p class="form-heading">Acquisition inquiry</p>
       <div class="hp" aria-hidden="true">
         <label for="website">Website</label>
         <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
       </div>
       <div class="field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required maxlength="120" autocomplete="name" placeholder="Your name" />
+        <label for="name">Your full name <span class="hint">(required)</span></label>
+        <input type="text" id="name" name="name" required maxlength="120" autocomplete="name" placeholder="e.g. Jane Smith" />
       </div>
       <div class="field">
-        <label for="company">Company</label>
-        <input type="text" id="company" name="company" maxlength="200" autocomplete="organization" placeholder="Organisation (optional)" />
+        <label for="company">Company or organisation <span class="hint">(optional)</span></label>
+        <input type="text" id="company" name="company" maxlength="200" autocomplete="organization" placeholder="e.g. Acme Holdings Ltd" />
       </div>
       <div class="field">
-        <label for="email">Work email</label>
-        <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" placeholder="you@company.com" />
+        <label for="email">Business email address <span class="hint">(required)</span></label>
+        <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" placeholder="e.g. jane@company.com" />
       </div>
       <div class="field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" maxlength="5000" placeholder="Brief details about your acquisition interest (optional)"></textarea>
+        <label for="message">Why are you interested in acquiring this domain? <span class="hint">(optional)</span></label>
+        <textarea id="message" name="message" maxlength="5000" placeholder="Share any relevant context about your interest or intended use."></textarea>
       </div>
-      <button class="cta" type="submit" id="submit-btn">Strategic Acquisition Inquiries — Contact Us</button>
+      <button class="cta" type="submit" id="submit-btn">Submit Acquisition Inquiry</button>
       <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       <p class="cta-note">Confidential inquiries welcome</p>
     </form>
@@ -119,7 +122,7 @@
         statusEl.classList.add("error");
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Strategic Acquisition Inquiries — Contact Us";
+        submitBtn.textContent = "Submit Acquisition Inquiry";
       }
     });
   </script>
